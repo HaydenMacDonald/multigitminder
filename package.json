@@ -1,0 +1,27 @@
+{
+  "name": "multigitminder",
+  "version": "1.0.0",
+  "description": "A GitHub Action to log data from multiple repos in a single Beeminder goal",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaydenMacDonald/multigitminder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaydenMacDonald/multigitminder/issues"
+  },
+  "homepage": "https://github.com/HaydenMacDonald/multigitminder#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}
