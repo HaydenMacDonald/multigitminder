@@ -1,6 +1,6 @@
 {
   "name": "multigitminder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A GitHub Action to log data from multiple repos in a single Beeminder goal",
   "main": "index.js",
   "directories": {
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"bump": "npm version"
+    "bump": "npm version"
   },
   "repository": {
     "type": "git",
