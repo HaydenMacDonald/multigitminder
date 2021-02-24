@@ -1,14 +1,22 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'multigitminder'
+description: 'Create data point via Beeminder API'
 author: 'Hayden MacDonald <hmd@needleinthehay.ca>'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  auth_token: 
+    description: "User's unique authorization token for Beeminder API"
     required: true
-    default: 'World'
+  goal_name:
+    description: 'Name of the user's goal.'
+    required: true
+  comment:
+    description: 'Optional comment about the data point.'
+    required: true
+    default: 'logged to API via multigitminder'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  time:
+    description: 'The time the data point request was made to the API'
+  data:
+    description: 'The data object returned by the Beeminder API'
 runs:
   using: 'node12'
   main: 'index.js'
