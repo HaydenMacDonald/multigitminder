@@ -15,7 +15,7 @@ Optional output arguments.
 Secrets the action uses.
 Environment variables the action uses.
 
-# Example Usage
+## Example Usage
 
 See [action.yml](action.yml)
 
@@ -29,10 +29,10 @@ steps:
 
 For more examples on events that can trigger this workflow see the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).
 
-# License
+## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
 
-# Contributions
+## Contributions
 
 Contributions are welcome! See [Contributor's Guide](docs/contributors.md)
