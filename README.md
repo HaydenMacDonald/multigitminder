@@ -27,6 +27,8 @@ steps:
 - run: 
 ```
 
+For more examples on events that can trigger this workflow see the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).
+
 # License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
