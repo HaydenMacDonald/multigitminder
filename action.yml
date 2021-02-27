@@ -3,7 +3,7 @@ description: 'Create data point via Beeminder API'
 author: 'Hayden MacDonald <hmd@needleinthehay.ca>'
 inputs:
   auth_token: 
-    description: "User's unique authorization token for Beeminder API"
+    description: 'Unique authorization token for Beeminder API'
     required: true
   goal:
     description: 'Name of the user's goal.'
