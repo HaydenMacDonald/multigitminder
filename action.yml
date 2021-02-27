@@ -19,4 +19,4 @@ outputs:
     description: 'The data object returned by the Beeminder API'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
