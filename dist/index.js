@@ -6651,6 +6651,17 @@ try {
 	const goal = core.getInput('goal');
 	const comment = core.getInput('comment');
 
+	// Fail if auth token is not provided.
+	if (!auth_token) {
+		core.setFailed(`Error: Beeminder auth token not found`);
+		return;
+	}
+
+	// Return error if no goal provided.
+	if (!goal) {
+		core.setFailed(`Error: Goal name not found.`)
+	}
+
 	// Access API with token
 	var bm = beeminder(auth_token);
 
