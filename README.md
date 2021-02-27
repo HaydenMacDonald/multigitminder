@@ -4,18 +4,22 @@
 
 A GitHub Action for logging data points to Beeminder. Configure workflows to trigger on push, pull requests, closed issues, and [any other event support by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).
 
+## Rationale
+
+Beeminder's native integration with GitHub, `gitminder`, allows Beeminder users to...
+
 ## Inputs
 Required
-- `auth_token` - Unique authorization token for Beeminder API.
+- `auth_token` - Unique authorization token for Beeminder API, stored as a secret in your repo.
 - `goal` - Name of the goal.
-- `value` - Numeric value of data point input (default 1).
+- `value` - Numeric value of data point input (default value of 1).
 
 Optional
 - `comment` - Optional comment about the data point.
 
 ## Outputs
-- `data` - the resulting data object returned by the Beeminder API.
-- `time` - the time the data point request was made to the API.
+- `data` - Resulting data object returned by the Beeminder API.
+- `time` - Datetime the data point request was made to the API.
 
 ## Secrets & Environmental Variables
 
@@ -23,13 +27,12 @@ Optional
 
 ## Example Usage
 
-See [action.yml](action.yml)
+See [examples directory](/examples).
 
 Log data to a Beeminder goal when pushes and pull requests are made to the main branch:
 ```yaml
 name: multigitminder
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
@@ -39,9 +42,6 @@ jobs:
   multigitminder:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      # Use current directory
       - uses: HaydenMacDonald/multigitminder@v1.0.1
         id: multigitminder
         with:
@@ -50,23 +50,19 @@ jobs:
       - run: echo ${{ steps.multigitminder.outputs.data }}
 ```
 
-Log data to a Beeminder goal after closing an issue:
+Log data to a Beeminder goal after pushing to main branch or closing an issue:
 ```yaml
 name: multigitminder
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  issues:
+    types: [ closed ]
 
 jobs:
   multigitminder:
     runs-on: ubuntu-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      # Use current directory
       - uses: HaydenMacDonald/multigitminder@v1.0.1
         id: multigitminder
         with:
