@@ -2,11 +2,12 @@
   "name": "multigitminder",
   "version": "1.0.1",
   "description": "A GitHub Action to log data from multiple repos in a single Beeminder goal",
-  "main": "index.js",
+  "main": "dist/index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
+    "build": "ncc build src/action.js -o dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "bump": "npm version"
   },
@@ -24,6 +25,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
+    "@zeit/ncc": "^0.22.3",
     "beeminder": "^1.6.5"
   }
 }
