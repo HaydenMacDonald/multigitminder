@@ -6665,11 +6665,12 @@ try {
 	}, function (err, result) {
 		
 		// Output error or result from API
-		console.log(err || result);
+		const data = err || result;
+		core.setOutput("data", data);
 
 		// Output timestamp
-		// const time = (new Date()).toTimeString();
-		// core.setOutput("time", time);
+		const time = (new Date()).toTimeString();
+		core.setOutput("time", time);
 
 	});
 

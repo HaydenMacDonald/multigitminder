@@ -16,7 +16,7 @@ outputs:
   time:
     description: 'The time the data point request was made to the API'
   data:
-    description: 'The data object returned by the Beeminder API'
+    description: 'The resulting data object returned by the Beeminder API'
 runs:
   using: 'node12'
   main: 'dist/index.js'
