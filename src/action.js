@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const guid = require('./guid.js');
 var beeminder = require('beeminder');
-var auth_token = '';
+// var auth_token = '';
 var bm = beeminder(auth_token);
 
 try {
@@ -12,6 +12,8 @@ try {
 	core.setOutput("time", time);
 	
 	// Get comment input from user
+	const auth_token = core.getInput('auth_token');
+	const goal = core.getInput('goal');
 	const comment = core.getInput('comment');
 
 	bm.createDatapoint('multigitminder', {	

@@ -5,7 +5,7 @@ inputs:
   auth_token: 
     description: "User's unique authorization token for Beeminder API"
     required: true
-  goal_name:
+  goal:
     description: 'Name of the user's goal.'
     required: true
   comment:

@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/HaydenMacDonald/multigitminder#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "@zeit/ncc": "^0.22.3",
     "beeminder": "^1.6.5"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.2.6",
+    "@vercel/ncc": "^0.27.0"
   }
 }
