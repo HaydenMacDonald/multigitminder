@@ -15,5 +15,5 @@ jobs:
       # Use current directory
       - uses: ./
         with:
-          with: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           goal: multigitminder
