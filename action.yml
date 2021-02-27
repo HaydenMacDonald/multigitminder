@@ -3,20 +3,24 @@ description: 'Create data point via Beeminder API'
 author: 'Hayden MacDonald <hmd@needleinthehay.ca>'
 inputs:
   auth_token: 
-    description: 'Unique authorization token for Beeminder API'
+    description: 'Unique authorization token for Beeminder API.'
     required: true
   goal:
     description: 'Name of the goal.'
     required: true
+  value:
+    description: 'Value of data point input.'
+    required: false
+    default: 1
   comment:
     description: 'Optional comment about the data point.'
-    required: true
-    default: 'logged to API via multigitminder'
+    required: false
+    default: 'via multigitminder API call at ${{ steps.multigitminder.outputs.time }}'
 outputs:
   time:
-    description: 'The time the data point request was made to the API'
+    description: 'The time the data point request was made to the API.'
   data:
-    description: 'The resulting data object returned by the Beeminder API'
+    description: 'The resulting data object returned by the Beeminder API.'
 runs:
   using: 'node12'
   main: 'dist/index.js'

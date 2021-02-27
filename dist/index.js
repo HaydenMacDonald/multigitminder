@@ -6649,6 +6649,7 @@ try {
 	// Get auth_token, goal, and comment input from user
 	const auth_token = core.getInput('auth_token');
 	const goal = core.getInput('goal');
+	const value = core.getInput('value');
 	const comment = core.getInput('comment');
 
 	// Fail if auth token is not provided.
@@ -6657,17 +6658,25 @@ try {
 		return;
 	}
 
-	// Return error if no goal provided.
+	// Fail if no goal provided.
 	if (!goal) {
-		core.setFailed(`Error: Goal name not found.`)
+		core.setFailed(`Error: Goal name not found.`);
+		return;
 	}
+
+	// Fail if no value provided.
+	if (!value) {
+		core.setFailed(`Error: Data value not found.`);
+		return;
+	}
+
 
 	// Access API with token
 	var bm = beeminder(auth_token);
 
 	// Create a data point for the goal
 	bm.createDatapoint(`${goal}`, {	
-	  value: 1, // {type: Number, required: true},
+	  value: `${value}`, // {type: Number, required: true},
 	  timestamp: new Date().valueOf() / 1000, // {type: Number, default: now},
 	  comment: `${comment}`, // `comment` input defined in action metadata file
 	  sendmail: false, // if you want the user to be emailed
