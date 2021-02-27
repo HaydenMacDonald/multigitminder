@@ -15,7 +15,6 @@ inputs:
   comment:
     description: 'Optional comment about the data point.'
     required: false
-    default: 'via multigitminder API call'
 outputs:
   time:
     description: 'The time the data point request was made to the API.'
