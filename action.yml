@@ -6,7 +6,7 @@ inputs:
     description: 'Unique authorization token for Beeminder API'
     required: true
   goal:
-    description: 'Name of the user's goal.'
+    description: 'Name of the goal.'
     required: true
   comment:
     description: 'Optional comment about the data point.'
