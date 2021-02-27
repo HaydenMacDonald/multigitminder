@@ -42,6 +42,7 @@ jobs:
   multigitminder:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: HaydenMacDonald/multigitminder@v1.0.1
         id: multigitminder
         with:
@@ -63,6 +64,7 @@ jobs:
   multigitminder:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: HaydenMacDonald/multigitminder@v1.0.1
         id: multigitminder
         with:

@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Use current directory
+      - uses: actions/checkout@v2
       - uses: ./
         id: multigitminder
         with:
