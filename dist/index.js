@@ -6668,8 +6668,8 @@ try {
 		console.log(err || result);
 
 		// Output timestamp
-		const time = (new Date()).toTimeString();
-		core.setOutput("time", time);
+		// const time = (new Date()).toTimeString();
+		// core.setOutput("time", time);
 
 	});
 
