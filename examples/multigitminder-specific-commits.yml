@@ -1,0 +1,19 @@
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: HaydenMacDonald/multigitminder@v1.0.1
+        id: multigitminder
+        with:
+          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          goal: YOUR-GOAL-NAME-HERE
+      - run: echo ${{ steps.multigitminder.outputs.data }}

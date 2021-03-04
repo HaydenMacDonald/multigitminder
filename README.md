@@ -17,8 +17,8 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 ## Installation
 
 Implement this action on any repo you own by:
-- Creating a workflow file in a `.github/workflows/` directory in your repo (see [examples directory](/examples)).
-- Specifying your goal parameters in the file (see [Inputs](## Inputs) section).
+- Creating a workflow file in a `.github/workflows/` directory (see [examples directory](/examples)).
+- Specifying your goal parameters in the file (see [Inputs](##Inputs) section).
 - Storing your Beeminder authorization token as a secret in the repo.
 
 ## Inputs
@@ -113,7 +113,7 @@ jobs:
           goal: YOUR-GOAL-NAME-HERE
       - run: echo ${{ steps.multigitminder.outputs.data }}
 ```
-and put '[multigitminder]' in the commits you want to put towards your Beeminder goal.
+and include '[multigitminder]' in the commit message of your chosen commits you want to count towards your Beeminder goal.
 
 ## License
 
