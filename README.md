@@ -12,11 +12,14 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 
 ## How it Works
 
-![multigitminder flow](multigitminder diagram.png)
+![multigitminder flow](multigitminder-diagram.png)
 
 ## Installation
 
-Implement this action on any repo you own by creating a workflow file in a `.github/workflows/` directory in your repo (see [examples directory](/examples)), specify your goal parameters in the file (see [Inputs](## Inputs) section), and store your Beeminder authorization token as a secret in the repo.
+Implement this action on any repo you own by:
+- Creating a workflow file in a `.github/workflows/` directory in your repo (see [examples directory](/examples)).
+- Specifying your goal parameters in the file (see [Inputs](## Inputs) section).
+- Storing your Beeminder authorization token as a secret in the repo.
 
 ## Inputs
 Required
@@ -85,10 +88,37 @@ jobs:
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
 
+### What if I only want specific changes to trigger multigitminder?
+
+Add a (conditional)[https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif] to your workflow file like so:
+
+```yaml
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: HaydenMacDonald/multigitminder@v1.0.1
+        id: multigitminder
+        with:
+          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          goal: YOUR-GOAL-NAME-HERE
+      - run: echo ${{ steps.multigitminder.outputs.data }}
+```
+and put '[multigitminder]' in the commits you want to put towards your Beeminder goal.
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
 
 ## Contributions
 
-Contributions are welcome! See [Contributor's Guide](docs/contributors.md)
+Contributions are welcome! See our [Code of Conduct](.github/CODE_OF_CONDUCT.md).
