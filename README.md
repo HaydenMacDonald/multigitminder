@@ -12,7 +12,7 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 
 ## How it Works
 
-![multigitminder flow](multigitminder-diagram.png)
+![multigitminder flow](/img/multigitminder-diagram.png)
 
 ## Installation
 
@@ -90,7 +90,7 @@ See the [GitHub Actions documentation](https://docs.github.com/en/actions/refere
 
 ### What if I only want specific changes to trigger multigitminder?
 
-Add a (conditional)[https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif] to your workflow file like so:
+Add a [conditional](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif) to your workflow file like so:
 
 ```yaml
 name: multigitminder
@@ -121,4 +121,4 @@ The scripts and documentation in this project are released under the [MIT Licens
 
 ## Contributions
 
-Contributions are welcome! See our [Code of Conduct](.github/CODE_OF_CONDUCT.md).
+Contributions are welcome! See our [Code of Conduct](/.github/CODE_OF_CONDUCT.md).
