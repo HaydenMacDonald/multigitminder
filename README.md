@@ -6,7 +6,17 @@ A GitHub Action for logging data points to Beeminder. Configure workflows to tri
 
 ## Rationale
 
-Beeminder's native integration with GitHub, `gitminder`, allows Beeminder users to...
+Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Though this integration is good, it enforces a 1:1 relationship between repos and goals. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals.
+
+[ DIAGRAM OF POSSIBLE SETUPS ]
+
+## How it Works
+
+![multigitminder flow](multigitminder diagram.png)
+
+## Installation
+
+Implement this action on any repo you own by creating a workflow file in a `.github/workflows/` directory in your repo (see [examples directory](/examples)), specify your goal parameters in the file (see [Inputs](## Inputs) section), and store your Beeminder authorization token as a secret in the repo.
 
 ## Inputs
 Required
@@ -23,7 +33,7 @@ Optional
 
 ## Secrets & Environmental Variables
 
-`multigitminder` requires a Beeminder auth token as an input, stored as a secret in your chosen repo. To store a secret in your repo, see the [GitHub Docs](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+`multigitminder` requires a Beeminder auth token as an input, stored as a secret in your chosen repo(s). For help on how to store a secret in your repo, see the [GitHub Docs](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 
 ## Example Usage
 
