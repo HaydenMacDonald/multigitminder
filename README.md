@@ -88,7 +88,7 @@ jobs:
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
 
-### What if I only want specific changes to trigger multigitminder?
+### What if I only want specific commits to trigger multigitminder?
 
 Add a [conditional](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif) to your workflow file like so:
 
@@ -113,7 +113,7 @@ jobs:
           goal: YOUR-GOAL-NAME-HERE
       - run: echo ${{ steps.multigitminder.outputs.data }}
 ```
-and include '[multigitminder]' in the commit message of your chosen commits you want to count towards your Beeminder goal.
+and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
 
 ## License
 
