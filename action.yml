@@ -25,4 +25,4 @@ outputs:
     description: 'The resulting data object returned by the Beeminder API.'
 runs:
   using: 'docker'
-  main: 'Dockerfile'
+  image: 'Dockerfile'
