@@ -53,7 +53,7 @@ def main():
 
     goal = pyminder.get_goal(goal_name)
 
-    goal.stage_datapoint(value, time)
+    goal.stage_datapoint(value, time) # TODO add comment value after pull request to pyminder
 
     goal.commit_datapoints()
 

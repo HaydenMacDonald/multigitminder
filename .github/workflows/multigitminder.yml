@@ -22,6 +22,7 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
       # - run: echo ${{ steps.multigitminder.outputs.time }}
-      - name: Output
+      - name: Time Output
         run: echo ${{ steps.multigitminder.outputs.TIME }}
+      - name: Data Output
         run: echo ${{ steps.multigitminder.outputs.DATA }}
