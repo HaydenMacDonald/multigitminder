@@ -5,12 +5,12 @@ from pyminder.pyminder import Pyminder
 
 def main():
 
-    # user_name = os.getenv('INPUT_USER_NAME')
-    # auth_token = os.getenv('INPUT_AUTH_TOKEN')
-    # goal_name = os.getenv('INPUT_GOAL')
-    # value = os.getenv('INPUT_VALUE')
-    # comment = os.getenv('INPUT_COMMENT')
-    # time = datetime.now()
+    user_name = os.getenv('INPUT_USER_NAME')
+    auth_token = os.getenv('INPUT_AUTH_TOKEN')
+    goal_name = os.getenv('INPUT_GOAL')
+    value = os.getenv('INPUT_VALUE')
+    comment = os.getenv('INPUT_COMMENT')
+    time = datetime.now()
 
     # Fail if user_name is not provided
     if (user_name is None):
