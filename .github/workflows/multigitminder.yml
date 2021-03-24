@@ -9,14 +9,19 @@ on:
 jobs:
   multigitminder:
     runs-on: ubuntu-latest
+    name: multigitminder
     steps:
       # Use current directory
-      - uses: actions/checkout@v2
-      - uses: HaydenMacDonald/multigitminder@main
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
           USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
       # - run: echo ${{ steps.multigitminder.outputs.time }}
-      - run: echo ${{ steps.multigitminder.outputs.data }}
+      - name: Output
+        run: echo ${{ steps.multigitminder.outputs.TIME }}
+        run: echo ${{ steps.multigitminder.outputs.DATA }}
