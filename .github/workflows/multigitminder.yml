@@ -22,4 +22,4 @@ jobs:
         with:
           USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: gitminder
