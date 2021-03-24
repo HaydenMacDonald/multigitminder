@@ -2,7 +2,7 @@ name: multigitminder
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ main , pyminder]
   pull_request:
     branches: [ main ]
 
@@ -12,10 +12,11 @@ jobs:
     steps:
       # Use current directory
       - uses: actions/checkout@v2
-      - uses: ./
+      - uses: HaydenMacDonald/multigitminder@pyminder
         id: multigitminder
         with:
-          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          goal: multigitminder
+          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
       # - run: echo ${{ steps.multigitminder.outputs.time }}
       - run: echo ${{ steps.multigitminder.outputs.data }}
