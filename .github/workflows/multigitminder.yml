@@ -2,7 +2,7 @@ name: multigitminder
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main , pyminder]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -12,6 +12,7 @@ jobs:
     name: multigitminder
     steps:
       # Checkout 
+      # TODO use github/linguist to analyze repo languages
       - name: Checkout
         uses: actions/checkout@v2
       # multigitminder
@@ -22,8 +23,3 @@ jobs:
           USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
-      # Output
-      - name: Time Output
-        run: echo "${{ steps.multigitminder.outputs.TIME }}"
-      - name: Data Output
-        run: echo "${{ steps.multigitminder.outputs.DATA }}"

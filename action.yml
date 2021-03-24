@@ -18,11 +18,6 @@ inputs:
   COMMENT:
     description: 'Optional comment about the data point.'
     required: false
-outputs:
-  TIME:
-    description: 'The time the data point request was made to the API.'
-  DATA:
-    description: 'The resulting data object returned by the Beeminder API.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
