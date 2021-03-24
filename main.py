@@ -52,7 +52,7 @@ def main():
 
     goal.commit_datapoints()
 
-    print('Data point of ' value + ' added to ' + goal_name + ' with comment: ' + comment)
+    print('Data point of ' + value + ' added to ' + goal_name + ' with comment: ' + comment)
 
 
 if __name__ == "__main__":
