@@ -40,7 +40,7 @@ def main():
         return
 
     if (comment is None or len(comment) == 0):
-        print('Comment not provided. Using default comment')
+        print('Comment not provided. Using default comment.')
         comment = 'via multigitminder API call at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
 
@@ -52,8 +52,6 @@ def main():
     pyminder = Pyminder(user = user_name, token = auth_token)
 
     goal = pyminder.get_goal(goal_name)
-
-    print(comment)
 
     goal.stage_datapoint(value, time)
 
