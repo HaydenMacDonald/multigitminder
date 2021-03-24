@@ -11,13 +11,6 @@ def main():
     # value = os.getenv('INPUT_VALUE')
     # comment = os.getenv('INPUT_COMMENT')
     # time = datetime.now()
-    
-    user_name = 'Alkaline'
-    auth_token = 'ysuwmzgnrxPiTJs19sLy'
-    goal_name = 'multigitminder'
-    value = 1
-    comment = ''
-    time = datetime.now()
 
     # Fail if user_name is not provided
     if (user_name is None):
@@ -42,7 +35,6 @@ def main():
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
         comment = 'via multigitminder API call at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        
 
     # Fail if no value provided.
     if (time is None):
