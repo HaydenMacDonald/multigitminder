@@ -11,9 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Use current directory
+      # Checkout 
       - name: Checkout
         uses: actions/checkout@v2
+      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
@@ -21,8 +22,8 @@ jobs:
           USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
-      # - run: echo ${{ steps.multigitminder.outputs.time }}
+      # Output
       - name: Time Output
-        run: echo ${{ steps.multigitminder.outputs.TIME }}
+        run: echo "${{ steps.multigitminder.outputs.TIME }}"
       - name: Data Output
-        run: echo ${{ steps.multigitminder.outputs.DATA }}
+        run: echo "${{ steps.multigitminder.outputs.DATA }}"
