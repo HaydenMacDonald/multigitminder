@@ -1,6 +1,9 @@
 name: 'multigitminder'
 description: 'Create data point via Beeminder API'
 author: 'Hayden MacDonald <hmd@needleinthehay.ca>'
+branding:
+  icon: "zap"
+  color: "yellow"
 inputs:
   USER_NAME:
     description: 'Beeminder user name.'

@@ -45,12 +45,14 @@ def main():
     pyminder = Pyminder(user = user_name, token = auth_token)
 
     goal = pyminder.get_goal(goal_name)
-
-    goal.stage_datapoint(value, time) # TODO add comment value after pull request to pyminder
+    
+    # TODO add comment value after pull request to pyminder
+    #  labels: enhancement
+    goal.stage_datapoint(value, time)
 
     goal.commit_datapoints()
 
-    print(value + ' added to ' + goal_name + ' with comment: ' + comment)
+    print('Data point of ' value + ' added to ' + goal_name + ' with comment: ' + comment)
 
 
 if __name__ == "__main__":
