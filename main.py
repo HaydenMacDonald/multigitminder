@@ -32,6 +32,10 @@ def main():
         print('Error: Data value not found.')
         return
 
+    if (comment is None):
+        print('Error: Data value not found.')
+        return
+
     # Fail if no value provided.
     if (time is None):
         print('Error: Date time not found.')
