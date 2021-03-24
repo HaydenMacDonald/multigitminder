@@ -15,6 +15,11 @@ jobs:
       # TODO use github/linguist to analyze repo languages
       - name: Checkout
         uses: actions/checkout@v2
+      - name: "TODO to Issue"
+        uses: "alstr/todo-to-issue-action@v2.4.1"
+        id: "todo"
+        with:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main

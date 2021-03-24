@@ -32,6 +32,7 @@ def main():
         print('Error: Data value not found.')
         return
 
+    # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
         comment = 'via multigitminder API call at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -48,6 +49,9 @@ def main():
     goal.stage_datapoint(value, time) # TODO add comment value after pull request to pyminder
 
     goal.commit_datapoints()
+
+    print(value + ' added to ' + goal_name + ' with comment: ' + comment)
+
 
 if __name__ == "__main__":
     main()
