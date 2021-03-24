@@ -12,7 +12,7 @@ jobs:
     steps:
       # Use current directory
       - uses: actions/checkout@v2
-      - uses: HaydenMacDonald/multigitminder@pyminder
+      - uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
           USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
