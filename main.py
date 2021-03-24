@@ -46,12 +46,13 @@ def main():
 
     goal = pyminder.get_goal(goal_name)
     
-    # TODO add comment value after pull request to pyminder
+    # TODO Add comment data after submitting a pull request to pyminder
     #  labels: enhancement
     goal.stage_datapoint(value, time)
-
+    
     goal.commit_datapoints()
 
+    # Output statement
     print('Data point of ' + value + ' added to ' + goal_name + ' with comment: ' + comment)
 
 
