@@ -42,13 +42,11 @@ Optional
 
 See [examples directory](/examples).
 
-Log data to a Beeminder goal when pushes and pull requests are made to the main branch:
+Log data to a Beeminder goal when pushing to the main branch:
 ```yaml
 name: multigitminder
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
 jobs:
@@ -66,7 +64,7 @@ jobs:
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: YOUR_GOAL_NAME_HERE
 ```
 
 Log data to a Beeminder goal after pushing to main branch or closing an issue:
@@ -93,12 +91,12 @@ jobs:
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: YOUR_GOAL_NAME_HERE
 ```
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
 
-### What if I only want specific commits to trigger multigitminder?
+### What if I want specific commits to trigger multigitminder?
 
 Add a [conditional](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif) to your workflow file like so:
 
@@ -126,7 +124,7 @@ jobs:
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: YOUR_GOAL_NAME_HERE
 ```
 and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
 
@@ -142,7 +140,6 @@ on:
 
 jobs:
   multigitminder:
-    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
@@ -156,7 +153,7 @@ jobs:
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: YOUR_GOAL_NAME_HERE
           VALUE: 1
           COMMENT: ${{ github.event.head_commit.message }}
 ```
