@@ -16,8 +16,8 @@ inputs:
     required: true
   VALUE:
     description: 'Value of data point input.'
-    required: false
-    default: 1
+    required: true
+    default: '1'
   COMMENT:
     description: 'Optional comment about the data point.'
     required: false

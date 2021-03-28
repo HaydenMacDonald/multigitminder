@@ -26,7 +26,7 @@ Required
 - `USERNAME` - your Beeminder username, stored as a secret in your repo.
 - `AUTH_TOKEN` - Unique authorization token for Beeminder API, stored as a secret in your repo.
 - `GOAL` - Name of the goal.
-- `VALUE` - Numeric value of data point input (default value of 1).
+- `VALUE` - Value of data point as string (default value of '1').
 
 Optional
 - `COMMENT` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').

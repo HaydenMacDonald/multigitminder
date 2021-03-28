@@ -5,12 +5,12 @@ from pyminder.pyminder import Pyminder
 
 def main():
 
-    username = os.getenv('INPUT_USERNAME')
-    auth_token = os.getenv('INPUT_AUTH_TOKEN')
-    goal_name = os.getenv('INPUT_GOAL')
-    value = os.getenv('INPUT_VALUE')
-    comment = os.getenv('INPUT_COMMENT')
-    time = datetime.now()
+    # username = os.getenv('INPUT_USERNAME')
+    # auth_token = os.getenv('INPUT_AUTH_TOKEN')
+    # goal_name = os.getenv('INPUT_GOAL')
+    # value = os.getenv('INPUT_VALUE')
+    # comment = os.getenv('INPUT_COMMENT')
+    # time = datetime.now()
 
     # Fail if user_name is not provided
     if (username is None):
@@ -53,7 +53,8 @@ def main():
     goal.commit_datapoints()
 
     # Output statement
-    print('Data point of ' + value + ' added to ' + goal_name + ' at ' + time.strftime("%Y-%m-%d %H:%M:%S") + ' with comment: ' + comment)
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    print('Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + ' with comment: ' + comment)
 
 
 if __name__ == "__main__":
