@@ -25,8 +25,8 @@ jobs:
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          USER_NAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
-          VALUE: 2
+          VALUE: 1
           COMMENT: ${{ github.event.head_commit.message }}

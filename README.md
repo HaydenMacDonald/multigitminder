@@ -23,12 +23,13 @@ Implement this action on any repo you own by:
 
 ## Inputs
 Required
-- `auth_token` - Unique authorization token for Beeminder API, stored as a secret in your repo.
-- `goal` - Name of the goal.
-- `value` - Numeric value of data point input (default value of 1).
+- `USERNAME` - your Beeminder username.
+- `AUTH_TOKEN` - Unique authorization token for Beeminder API, stored as a secret in your repo.
+- `GOAL` - Name of the goal.
+- `VALUE` - Numeric value of data point input (default value of 1).
 
 Optional
-- `comment` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
+- `COMMENT` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
 
 ## Outputs
 - Print statement confirming the value, goal, timestamp, and comment of data point sent to Beeminder.
@@ -63,7 +64,7 @@ jobs:
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
 ```
@@ -90,7 +91,7 @@ jobs:
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
 ```
@@ -123,7 +124,7 @@ jobs:
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
 ```
@@ -153,7 +154,7 @@ jobs:
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           VALUE: 1

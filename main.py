@@ -5,7 +5,7 @@ from pyminder.pyminder import Pyminder
 
 def main():
 
-    user_name = os.getenv('INPUT_USER_NAME')
+    username = os.getenv('INPUT_USERNAME')
     auth_token = os.getenv('INPUT_AUTH_TOKEN')
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
@@ -13,7 +13,7 @@ def main():
     time = datetime.now()
 
     # Fail if user_name is not provided
-    if (user_name is None):
+    if (username is None):
         print('Error: Beeminder user name required')
         return
 
@@ -42,7 +42,7 @@ def main():
         print('Comment not provided. Using default comment.')
         comment = 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
 
-    pyminder = Pyminder(user = user_name, token = auth_token)
+    pyminder = Pyminder(user = username, token = auth_token)
 
     goal = pyminder.get_goal(goal_name)
     
