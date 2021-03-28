@@ -6,9 +6,11 @@ A GitHub Action for logging data points to Beeminder. Configure workflows to tri
 
 ## Rationale
 
-Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commit and issues closed in a single repo or across your whole GitHub account. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any event supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
+Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commits and issues closed in a single repo or across your whole GitHub account. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any combination of events supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
 
 ## How it Works
+
+After configuring a workflow file in your chosen repo, GitHub Actions will run `multigitminder` every time your chosen event type occurs. The action uses a simple python script (via [`pyminder`](https://github.com/narthur/pyminder)) to push your data points to Beeminder's API. Your Beeminder username and auth token are kept safe, since they are stored as secrets in your GitHub repo(s) and obscured by GitHub Actions.
 
 ![multigitminder flow](/img/multigitminder-diagram.png)
 
@@ -16,8 +18,8 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 
 Implement this action on any repo you own by:
 - Creating a workflow file in a `.github/workflows/` directory (see [examples directory](/examples)).
-- Specifying your goal parameters in the file (see [Inputs](##Inputs) section).
-- Storing your Beeminder username and authorization token as secrets in the repo.
+- Specifying your goal parameters in the file (see [Inputs](#Inputs) section).
+- Storing your Beeminder username and authorization token as [secrets in the repo](#secrets--environmental-variables).
 
 ## Inputs
 Required
@@ -29,7 +31,7 @@ Optional
 - `comment` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
 
 ## Outputs
-- Print statement confirming the value, goal, time, and comment of data point sent to Beeminder.
+- Print statement confirming the value, goal, timestamp, and comment of data point sent to Beeminder.
 
 ## Secrets & Environmental Variables
 
@@ -78,14 +80,19 @@ on:
 jobs:
   multigitminder:
     runs-on: ubuntu-latest
+    name: multigitminder
     steps:
-      - uses: actions/checkout@v2
-      - uses: HaydenMacDonald/multigitminder@v1.0.1
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          goal: YOUR-GOAL-NAME-HERE
-      - run: echo ${{ steps.multigitminder.outputs.data }}
+          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
 ```
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
@@ -106,16 +113,52 @@ jobs:
   multigitminder:
     if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
     runs-on: ubuntu-latest
+    name: multigitminder
     steps:
-      - uses: actions/checkout@v2
-      - uses: HaydenMacDonald/multigitminder@v1.0.1
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          goal: YOUR-GOAL-NAME-HERE
-      - run: echo ${{ steps.multigitminder.outputs.data }}
+          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
 ```
 and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
+
+## What if I want my commit messages to be the comment on the Beeminder data point?
+
+Add `${{ github.event.head_commit.message }}` as input for the comment variable.
+
+```yaml
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
+    runs-on: ubuntu-latest
+    name: multigitminder
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
+        id: multigitminder
+        with:
+          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
+          VALUE: 1
+          COMMENT: ${{ github.event.head_commit.message }}
+```
 
 ## License
 
