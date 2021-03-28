@@ -32,15 +32,15 @@ def main():
         print('Error: Data value not found.')
         return
 
-    # If comment is not provided, use default
-    if (comment is None or len(comment) == 0):
-        print('Comment not provided. Using default comment.')
-        comment = 'via multigitminder API call at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     # Fail if no value provided.
     if (time is None):
         print('Error: Date time not found.')
         return
+
+    # If comment is not provided, use default
+    if (comment is None or len(comment) == 0):
+        print('Comment not provided. Using default comment.')
+        comment = 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
 
     pyminder = Pyminder(user = user_name, token = auth_token)
 
@@ -53,7 +53,7 @@ def main():
     goal.commit_datapoints()
 
     # Output statement
-    print('Data point of ' + value + ' added to ' + goal_name + ' with comment: ' + comment)
+    print('Data point of ' + value + ' added to ' + goal_name + ' at ' + time.strftime("%Y-%m-%d %H:%M:%S") + ' with comment: ' + comment)
 
 
 if __name__ == "__main__":

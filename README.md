@@ -6,9 +6,7 @@ A GitHub Action for logging data points to Beeminder. Configure workflows to tri
 
 ## Rationale
 
-Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Though this integration is good, it enforces a 1:1 relationship between repos and goals. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals.
-
-[ DIAGRAM OF POSSIBLE SETUPS ]
+Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commit and issues closed in a single repo or across your whole GitHub account. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any event supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
 
 ## How it Works
 
@@ -19,7 +17,7 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 Implement this action on any repo you own by:
 - Creating a workflow file in a `.github/workflows/` directory (see [examples directory](/examples)).
 - Specifying your goal parameters in the file (see [Inputs](##Inputs) section).
-- Storing your Beeminder authorization token as a secret in the repo.
+- Storing your Beeminder username and authorization token as secrets in the repo.
 
 ## Inputs
 Required
@@ -28,15 +26,14 @@ Required
 - `value` - Numeric value of data point input (default value of 1).
 
 Optional
-- `comment` - Optional comment about the data point.
+- `comment` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
 
 ## Outputs
-- `data` - Resulting data object returned by the Beeminder API.
-- `time` - Datetime the data point request was made to the API.
+- Print statement confirming the value, goal, time, and comment of data point sent to Beeminder.
 
 ## Secrets & Environmental Variables
 
-`multigitminder` requires a Beeminder auth token as an input, stored as a secret in your chosen repo(s). For help on how to store a secret in your repo, see the [GitHub Docs](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+`multigitminder` requires a **Beeminder username and auth token** as an input, stored as secrets in your chosen repo(s). For help on how to store a secret in your repo, see the [GitHub Docs](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
 
 ## Example Usage
 
@@ -54,14 +51,19 @@ on:
 jobs:
   multigitminder:
     runs-on: ubuntu-latest
+    name: multigitminder
     steps:
-      - uses: actions/checkout@v2
-      - uses: HaydenMacDonald/multigitminder@v1.0.1
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
-          auth_token: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          goal: YOUR-GOAL-NAME-HERE
-      - run: echo ${{ steps.multigitminder.outputs.data }}
+          USER_NAME: ${{ secrets.BEEMINDER_USER_NAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
 ```
 
 Log data to a Beeminder goal after pushing to main branch or closing an issue:
