@@ -5,14 +5,14 @@ from pyminder.pyminder import Pyminder
 
 def main():
 
-    # username = os.getenv('INPUT_USERNAME')
-    # auth_token = os.getenv('INPUT_AUTH_TOKEN')
-    # goal_name = os.getenv('INPUT_GOAL')
-    # value = os.getenv('INPUT_VALUE')
-    # comment = os.getenv('INPUT_COMMENT')
-    # time = datetime.now()
+    username = os.getenv('INPUT_USERNAME')
+    auth_token = os.getenv('INPUT_AUTH_TOKEN')
+    goal_name = os.getenv('INPUT_GOAL')
+    value = os.getenv('INPUT_VALUE')
+    comment = os.getenv('INPUT_COMMENT')
+    time = datetime.now()
 
-    # Fail if user_name is not provided
+    # Fail if username is not provided
     if (username is None):
         print('Error: Beeminder user name required')
         return
