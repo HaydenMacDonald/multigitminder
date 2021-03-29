@@ -2,8 +2,8 @@ name: multigitminder
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  issues:
+    types: [ closed ]
 
 jobs:
   multigitminder:
@@ -22,11 +22,10 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           VALUE: 1
-          COMMENT: ${{ github.event.head_commit.message }}
