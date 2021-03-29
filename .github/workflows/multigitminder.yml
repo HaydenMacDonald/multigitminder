@@ -29,4 +29,3 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           VALUE: 1
-          COMMENT: ${{ github.event.head_commit.message }}
