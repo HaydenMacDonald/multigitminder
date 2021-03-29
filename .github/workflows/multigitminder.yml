@@ -20,7 +20,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@hash
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
