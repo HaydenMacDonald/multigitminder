@@ -1,9 +1,7 @@
 name: multigitminder
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ main, hash ]
 
 jobs:
   multigitminder:
