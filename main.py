@@ -10,6 +10,8 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
+    hash = os.getenv('GITHUB_SHA')
+    ref = os.getenv('GITHUB_REF')
     time = datetime.now()
 
     # Fail if username is not provided
@@ -55,6 +57,8 @@ def main():
     # Output statement
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
     print('Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + ' with comment: ' + comment)
+    print(ref)
+    print(hash)
 
 
 if __name__ == "__main__":
