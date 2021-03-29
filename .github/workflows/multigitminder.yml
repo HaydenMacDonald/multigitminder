@@ -2,6 +2,8 @@ name: multigitminder
 on:
   push:
     branches: [ main, hash ]
+  issues:
+    types: [ closed ]
 
 jobs:
   multigitminder:
