@@ -20,6 +20,15 @@ jobs:
         id: "todo"
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # linguist
+      - name: Linguist Action
+        uses: fabasoad/linguist-action@v1.0.2
+        id: linguist
+        with:
+          path: './'
+          percentage: true
+      - name: Print linguist result
+        run: echo "${{ steps.linguist.outputs.data }}"
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@lang
