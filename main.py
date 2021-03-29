@@ -39,11 +39,6 @@ def main():
         print('Error: Data value not found.')
         return
 
-    # If comment is not provided, use default
-    if (comment is None or len(comment) == 0):
-        print('Comment not provided. Using default comment.')
-        comment = 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
-
     # If hash is not provided, else shorten hash to last 7 characters
     if (hash is None or len(hash) == 0):
         hash = ''
@@ -52,6 +47,14 @@ def main():
 
     # Shorten reference variable to branch name only
     ref = ref.split('/')[-1]
+
+    # If comment is not provided, use default
+    if (comment is None or len(comment) == 0):
+        print('Comment not provided. Using default comment.')
+        if (len(hash) == 0):
+            comment = ref + ': ' + 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            comment = ref + '@' + hash + ': ' + 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
     
     ## Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
