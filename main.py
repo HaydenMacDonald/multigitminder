@@ -18,6 +18,7 @@ def main():
 
     # Timestamp
     time = datetime.now()
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
     # Fail if username is not provided
     if (username is None):
@@ -52,9 +53,9 @@ def main():
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
         if (len(hash) == 0):
-            comment = ref + ': ' + 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
+            comment = ref + ' via multigitminder API call at ' + timestamp
         else:
-            comment = ref + '@' + hash + ': ' + 'via multigitminder API call at ' + time.strftime("%Y-%m-%d %H:%M:%S")
+            comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
     
     ## Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
@@ -70,8 +71,6 @@ def main():
     goal.commit_datapoints()
 
     # Output statement
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-
     if (len(hash) == 0):
         print(ref + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + ' with comment: ' + comment)
     else:
