@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
