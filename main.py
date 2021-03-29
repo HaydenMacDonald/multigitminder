@@ -72,9 +72,9 @@ def main():
 
     # Output statement
     if (len(hash) == 0):
-        print(ref + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + ' with comment: ' + comment)
+        print(ref + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
     else:
-        print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + ' with comment: ' + comment)
+        print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
 
 
 if __name__ == "__main__":
