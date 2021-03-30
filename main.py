@@ -81,7 +81,8 @@ def main():
         if (len(matched_langs) < 1):
             print('Error: repository languages do not match target language')
             return
-        else:  
+        else:
+            langs_list = ''
             for i in matched_langs:
                 langs_list += i + ", "
             print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
