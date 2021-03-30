@@ -79,7 +79,7 @@ def main():
         
         # If there is not at least one target language in repo_langs, stop and return error message
         if (len(matched_langs) < 1):
-            print('Error: repository languages do not match target language')
+            print('Error: Target languages not found in repository language list.')
             return
         else:
             langs_list = ''
