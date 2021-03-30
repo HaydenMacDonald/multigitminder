@@ -81,13 +81,10 @@ def main():
         if (len(matched_langs) < 1):
             print('Error: repository languages do not match target language')
             return
-        else:
-            print('Target languages found:')
-            
+        else:  
             for i in matched_langs:
-                print(i, end = " ")
-            
-            print('Logging data to Beeminder.')
+                langs_list = i + " "
+            print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
 
     # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
