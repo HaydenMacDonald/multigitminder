@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from datetime import datetime
 from pyminder.pyminder import Pyminder
 
@@ -11,6 +12,8 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
+    lang = os.getenv('INPUT_LANG')
+    langs = os.getenv('INPUT_LANGS')
 
     # GitHub variables
     ref = os.getenv('GITHUB_REF')
@@ -56,6 +59,23 @@ def main():
             comment = ref + ' via multigitminder API call at ' + timestamp
         else:
             comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
+
+    ## If target language is indicated
+    if (lang is not None):
+        
+        ## Make lang lowercase
+        lang = lang.lower()
+
+        ## Parse langs object
+        langs = json.load(langs)
+        print(lang.keys())
+        
+        ## For each language in langs, check for target language
+        if (lang not in langs.keys()):
+            print('Error: repository languages do not match target language')
+            return
+
+        
     
     ## Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)

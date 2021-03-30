@@ -27,8 +27,6 @@ jobs:
         with:
           path: './'
           percentage: true
-      - name: Print linguist result
-        run: echo "${{ steps.linguist.outputs.data }}"
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@lang
@@ -38,3 +36,5 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           VALUE: 1
+          LANG: python
+          LANGS: ${{ steps.linguist.outputs.data }}
