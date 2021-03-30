@@ -83,8 +83,10 @@ def main():
             return
         else:
             print('Target languages found:')
+            
             for i in matched_langs:
                 print(i, end = " ")
+            
             print('Logging data to Beeminder.')
 
     # Instantiate pyminder
