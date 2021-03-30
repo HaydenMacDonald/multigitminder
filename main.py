@@ -73,9 +73,12 @@ def main():
         # Parse repo_langs object
         repo_langs = json.loads(repo_langs)
         repo_langs = [ key.lower() for key,value in repo_langs.items() ] 
+
+        # Matching languages
+        matched_langs = [lang for lang in target_langs if lang in repo_langs]
         
         # If there is not at least one target language in repo_langs, stop and return error message
-        if (len([lang for lang in target_langs if lang in repo_langs]) > 1):
+        if (len(matched_langs) > 1):
             print('Error: repository languages do not match target language')
             return
 
