@@ -60,23 +60,21 @@ def main():
         else:
             comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
-    ## If target language is indicated
+    ## If target language is provided
     if (lang is not None):
         
         ## Make lang lowercase
         lang = lang.lower()
 
         ## Parse langs object
-        langs = json.load(langs)
-        print(lang.keys())
+        langs = json.loads(langs)
+        langs = [ key.lower() for key,value in langs.items() ] 
         
         ## For each language in langs, check for target language
-        if (lang not in langs.keys()):
+        if (lang not in langs):
             print('Error: repository languages do not match target language')
             return
 
-        
-    
     ## Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
 
@@ -91,10 +89,7 @@ def main():
     goal.commit_datapoints()
 
     # Output statement
-    if (len(hash) == 0):
-        print(ref + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
-    else:
-        print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
+    print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
 
 
 if __name__ == "__main__":
