@@ -36,5 +36,5 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           VALUE: 1
-          LANG: python
-          LANGS: ${{ steps.linguist.outputs.data }}
+          TARGET_LANGS: [ Python, dockerfile ]
+          REPO_LANGS: ${{ steps.linguist.outputs.data }}

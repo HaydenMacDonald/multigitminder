@@ -12,8 +12,8 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
-    lang = os.getenv('INPUT_LANG')
-    langs = os.getenv('INPUT_LANGS')
+    target_langs = os.getenv('INPUT_TARGET_LANGS')
+    repo_langs = os.getenv('INPUT_REPO_LANGS')
 
     # GitHub variables
     ref = os.getenv('GITHUB_REF')
@@ -55,30 +55,34 @@ def main():
     # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
-        if (len(hash) == 0):
-            comment = ref + ' via multigitminder API call at ' + timestamp
-        else:
-            comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
+        comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
-    ## If target language is provided
-    if (lang is not None):
+    # If target languages are provided
+    if (target_langs is not None):
         
-        ## Make lang lowercase
-        lang = lang.lower()
+        try:
+            # Extract target_langs from array string
+            target_langs = eval(target_langs)
+        except:
+            # If only one target language provided, create new array
+            target_langs = [ target_langs ]
+        
+        # Make each language in target_langs lowercase
+        target_langs = [ lang.lower() for lang in target_langs ]
 
-        ## Parse langs object
-        langs = json.loads(langs)
-        langs = [ key.lower() for key,value in langs.items() ] 
+        # Parse repo_langs object
+        repo_langs = json.loads(repo_langs)
+        repo_langs = [ key.lower() for key,value in repo_langs.items() ] 
         
-        ## For each language in langs, check for target language
-        if (lang not in langs):
+        # If there is not at least one target language in repo_langs, stop and return error message
+        if (len([lang for lang in target_langs if lang in repo_langs]) > 1):
             print('Error: repository languages do not match target language')
             return
 
-    ## Instantiate pyminder
+    # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
 
-    ## Get goal
+    # Get goal
     goal = pyminder.get_goal(goal_name)
     
     # TODO Add comment data after submitting a pull request to pyminder
