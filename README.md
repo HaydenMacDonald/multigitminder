@@ -29,7 +29,9 @@ Required
 - `VALUE` - Value of data point as string (default value of '1').
 
 Optional
-- `COMMENT` - Optional comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
+- `COMMENT` - Comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
+- `TARGET_LANGS` - List of languages associated with the goal. Must be formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
+- `REPO_LANGS` - List of languages found by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
 
 ## Outputs
 - Print statement confirming the value, goal, timestamp, and comment of data point sent to Beeminder.
@@ -156,6 +158,43 @@ jobs:
           GOAL: YOUR_GOAL_NAME_HERE
           VALUE: 1
           COMMENT: ${{ github.event.head_commit.message }}
+```
+
+## What if I want repositories with specific languages contributing to my Beeminder goal?
+
+Use [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Additionally, make linguist's output data an input for multigitminder (see below). 
+
+```yaml
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    runs-on: ubuntu-latest
+    name: multigitminder
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # linguist
+      - name: Linguist Action
+        uses: fabasoad/linguist-action@v1.0.2
+        id: linguist
+        with:
+          path: './'
+          percentage: true
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder
+        id: multigitminder
+        with:
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: YOUR_GOAL_NAME_HERE
+          TARGET_LANGS: YOUR_TARGET_LANGUAGES_HERE
+          REPO_LANGS: ${{ steps.linguist.outputs.data }}
 ```
 
 ## License
