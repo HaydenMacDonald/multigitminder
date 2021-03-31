@@ -6,7 +6,7 @@ A GitHub Action for logging data points to Beeminder. Configure workflows to tri
 
 ## Rationale
 
-Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commits and issues closed in a single repo or across your whole GitHub account. `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any combination of events supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
+Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commits and issues closed in a single repo or across your whole GitHub account. Conversely, `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any combination of events supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
 
 ## How it Works
 
@@ -130,35 +130,9 @@ jobs:
 ```
 and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
 
-## What if I want my commit messages to be the comment on the Beeminder data point?
+## What if I want commits to a repo to contribute to multiple Beeminder goals?
 
-Add `${{ github.event.head_commit.message }}` as input for the comment variable.
-
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  multigitminder:
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
-          VALUE: 1
-          COMMENT: ${{ github.event.head_commit.message }}
-```
+Create a workflow file in your repo's `.github/workflows/` directory for each goal, changing the input parameters accordingly.
 
 ## What if I want repositories with specific languages contributing to my Beeminder goal?
 
@@ -195,6 +169,36 @@ jobs:
           GOAL: YOUR_GOAL_NAME_HERE
           TARGET_LANGS: YOUR_TARGET_LANGUAGES_HERE ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
           REPO_LANGS: ${{ steps.linguist.outputs.data }}
+```
+
+## What if I want my commit messages to be the comment on the Beeminder data point?
+
+Add `${{ github.event.head_commit.message }}` as input for the comment variable.
+
+```yaml
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    runs-on: ubuntu-latest
+    name: multigitminder
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+      # multigitminder
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
+        id: multigitminder
+        with:
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: YOUR_GOAL_NAME_HERE
+          VALUE: 1
+          COMMENT: ${{ github.event.head_commit.message }}
 ```
 
 ## License

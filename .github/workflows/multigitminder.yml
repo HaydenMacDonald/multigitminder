@@ -11,8 +11,6 @@ jobs:
     name: multigitminder
     steps:
       # Checkout 
-      # TODO Integrate github/linguist action to analyze repo languages
-      #  labels: enhancement
       - name: Checkout
         uses: actions/checkout@v2
       - name: "TODO to Issue"
