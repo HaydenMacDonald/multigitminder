@@ -21,6 +21,12 @@ inputs:
   COMMENT:
     description: 'Optional comment about the data point.'
     required: false
+  TARGET_LANGS:
+    description: 'Optional input for target language related to goal.'
+    required: false
+  REPO_LANGS:
+    description: 'Optional JSON data of repo languages from fabasoad/linguist-action to accomodate language-based goals.'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

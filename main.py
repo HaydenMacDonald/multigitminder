@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from datetime import datetime
 from pyminder.pyminder import Pyminder
 
@@ -11,6 +12,8 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
+    target_langs = os.getenv('INPUT_TARGET_LANGS')
+    repo_langs = os.getenv('INPUT_REPO_LANGS')
 
     # GitHub variables
     ref = os.getenv('GITHUB_REF')
@@ -52,15 +55,42 @@ def main():
     # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
-        if (len(hash) == 0):
-            comment = ref + ' via multigitminder API call at ' + timestamp
+        comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
+
+    # If target languages are provided
+    if (target_langs is not None):
+        
+        try:
+            # Extract target_langs from array string
+            target_langs = eval(target_langs)
+        except:
+            # If only one target language provided, create new array
+            target_langs = [ target_langs ]
+        
+        # Make each language in target_langs lowercase
+        target_langs = [ lang.lower() for lang in target_langs ]
+
+        # Parse repo_langs object
+        repo_langs = json.loads(repo_langs)
+        repo_langs = [ key.lower() for key,value in repo_langs.items() ] 
+
+        # Matching languages
+        matched_langs = [lang for lang in target_langs if lang in repo_langs]
+        
+        # If there is not at least one target language in repo_langs, stop and return error message
+        if (len(matched_langs) < 1):
+            print('Error: Target languages not found in repository language list.')
+            return
         else:
-            comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
-    
-    ## Instantiate pyminder
+            langs_list = ''
+            for i in matched_langs:
+                langs_list += i + " "
+            print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
+
+    # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
 
-    ## Get goal
+    # Get goal
     goal = pyminder.get_goal(goal_name)
     
     # TODO Add comment data after submitting a pull request to pyminder
@@ -71,10 +101,7 @@ def main():
     goal.commit_datapoints()
 
     # Output statement
-    if (len(hash) == 0):
-        print(ref + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
-    else:
-        print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
+    print(ref + '@' + hash + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
 
 
 if __name__ == "__main__":
