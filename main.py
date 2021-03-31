@@ -57,6 +57,8 @@ def main():
         print('Comment not provided. Using default comment.')
         comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
+    print('target_langs: ' + target_langs)
+
     # If target languages are provided
     if (target_langs is not None or len(target_langs) != 0):
         
