@@ -35,5 +35,5 @@ jobs:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
-          TARGET_LANGS: '[ "Python" ]'
+          TARGET_LANGS: Python
           REPO_LANGS: ${{ steps.linguist.outputs.data }}
