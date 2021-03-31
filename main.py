@@ -58,7 +58,7 @@ def main():
         comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
     # If target languages are provided
-    if (target_langs is not None):
+    if (target_langs is not None or len(target_langs) != 0):
         
         try:
             # Extract target_langs from array string
