@@ -24,22 +24,22 @@ def main():
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
     # Fail if username is not provided
-    if (username is None):
+    if (username is None or len(username) == 0):
         print('Error: Beeminder user name required')
         return
 
     # Fail if auth token is not provided.
-    if (auth_token is None):
+    if (auth_token is None or len(auth_token) == 0):
         print('Error: Beeminder auth token not found')
         return
 
 	# Fail if no goal provided.
-    if (goal_name is None):
+    if (goal_name is None or len(goal_name) == 0):
         print('Error: Goal name not found.')
         return
 
 	# Fail if no value provided.
-    if (value is None):
+    if (value is None or len(value) == 0):
         print('Error: Data value not found.')
         return
 
@@ -57,11 +57,8 @@ def main():
         print('Comment not provided. Using default comment.')
         comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
-    print('target_langs: ' + target_langs)
-    print('target_langs length: ' + str(len(target_langs)))
-
     # If target languages are provided
-    if (target_langs is not None or len(target_langs) != 0):
+    if (len(target_langs) != 0):
         
         try:
             # Extract target_langs from array string
