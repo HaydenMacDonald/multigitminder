@@ -12,7 +12,7 @@ Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capt
 
 After configuring a workflow file in your chosen repo, GitHub Actions will run `multigitminder` every time your chosen event type occurs. The action uses a simple python script (via [`pyminder`](https://github.com/narthur/pyminder)) to push your data points to Beeminder's API. Your Beeminder username and auth token are kept safe, since they are stored as secrets in your GitHub repo(s) and obscured by GitHub Actions.
 
-<img src="/img/multigitminder-diagram.png" alt="multigitminder flow diagram">
+<img src="/img/multigitminder-diagram.png" alt="multigitminder flow diagram" width="613.33" height="140.66">
 
 ## Installation
 
