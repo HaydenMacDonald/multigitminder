@@ -1,7 +1,7 @@
 name: multigitminder
 on:
   push:
-    branches: [ main, lang ]
+    branches: [ main ]
   issues:
     types: [ closed ]
 
@@ -29,7 +29,7 @@ jobs:
           percentage: true
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@lang
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
