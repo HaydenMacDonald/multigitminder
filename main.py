@@ -58,7 +58,7 @@ def main():
         comment = ref + '@' + hash + ' via multigitminder API call at ' + timestamp
 
     print('target_langs: ' + target_langs)
-    print('target_langs length: ' + len(target_langs))
+    print('target_langs length: ' + str(len(target_langs)))
 
     # If target languages are provided
     if (target_langs is not None or len(target_langs) != 0):
