@@ -162,7 +162,7 @@ jobs:
 
 ## What if I want repositories with specific languages contributing to my Beeminder goal?
 
-Use [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Additionally, add linguist's output data and a list with your target language(s) as inputs for multigitminder (see below). 
+Use [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add linguist's output data and a list with your target language(s) as inputs for multigitminder (see below). 
 
 ```yaml
 name: multigitminder
