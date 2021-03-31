@@ -6,7 +6,7 @@ A GitHub Action for logging data points to Beeminder. Configure workflows to tri
 
 ## Rationale
 
-Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commits and issues closed in a single repo or across your whole GitHub account. Conversely, `multigitminder` allows Beeminder users to connect any number of repos to any number of active goals based on [any combination of events supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
+Beeminder's integration with GitHub, `gitminder`, allows Beeminder users to capture their programming activity as data for their Beeminder goals. Unfortunately, `gitminder` only tracks commits and issues closed in a single repo or across your whole GitHub account. Conversely, `multigitminder` allows users to connect any number of repos to any number of Beeminder goals based on [any combination of events supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).  
 
 ## How it Works
 
