@@ -2,6 +2,7 @@ FROM python:3-slim AS builder
 ADD . /app
 WORKDIR /app
 
+RUN apt-get install -y git
 RUN pip install --target=/app requests
 RUN pip install --target=/app -U pip setuptools
 RUN pip install --target=/app -U git+https://github.com/narthur/pyminder.git#egg=pyminder
