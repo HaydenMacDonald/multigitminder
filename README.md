@@ -30,8 +30,8 @@ Required
 
 Optional
 - `COMMENT` - Comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
-- `TARGET_LANGS` - List of languages associated with the goal. Must be formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
-- `REPO_LANGS` - List of languages found by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
+- `TARGET_LANGS` - List of target languages, formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
+- `REPO_LANGS` - List of languages inputted by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
 
 ## Outputs
 - Print statement confirming the value, goal, timestamp, and comment of data point sent to Beeminder.
