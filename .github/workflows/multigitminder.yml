@@ -18,6 +18,7 @@ jobs:
         id: "todo"
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLOSE_ISSUES: false
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
