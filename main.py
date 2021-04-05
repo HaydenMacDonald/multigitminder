@@ -93,9 +93,8 @@ def main():
     # Get goal
     goal = pyminder.get_goal(goal_name)
     
-    # TODO Add comment data after submitting a pull request to pyminder
-    #  labels: enhancement
-    goal.stage_datapoint(value, time)
+    # Stage datapoint for commit
+    goal.stage_datapoint(value, time, comment)
     
     # Commit datapoints to Beeminder API
     goal.commit_datapoints()
