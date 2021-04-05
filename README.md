@@ -23,9 +23,9 @@ Implement this action on any repo you own by:
 
 ## Inputs
 Required
-- `USERNAME` - your Beeminder username, stored as a secret in your repo.
-- `AUTH_TOKEN` - Unique authorization token for Beeminder API, stored as a secret in your repo.
-- `GOAL` - Name of the goal.
+- `USERNAME` - Your Beeminder username, stored as a secret in your repo.
+- `AUTH_TOKEN` - Your unique authorization token for Beeminder API, stored as a secret in your repo.
+- `GOAL` - Name of your goal.
 - `VALUE` - Value of data point as string (default value of '1').
 
 Optional
