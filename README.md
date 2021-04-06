@@ -56,13 +56,8 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -83,13 +78,8 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -116,13 +106,8 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -136,7 +121,7 @@ Create a workflow file in your repo's `.github/workflows/` directory for each go
 
 ## What if I want repositories with specific languages contributing to my Beeminder goal?
 
-Use [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add `linguist-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
+Use [actions/checkout@v2](https://github.com/actions/checkout) and [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add `linguist-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
 
 ```yaml
 name: multigitminder
@@ -149,7 +134,7 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
+      # checkout
       - name: Checkout
         uses: actions/checkout@v2
       # linguist
@@ -162,7 +147,6 @@ jobs:
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -186,13 +170,8 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}

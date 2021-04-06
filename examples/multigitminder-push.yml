@@ -8,13 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
