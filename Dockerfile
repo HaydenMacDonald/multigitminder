@@ -3,8 +3,7 @@ ADD . /app
 WORKDIR /app
 
 RUN pip install --target=/app requests
-RUN pip install --target=/app -U pip setuptools
-RUN pip install --upgrade --target=/app -U https://github.com/narthur/pyminder/tarball/master
+RUN pip install --target=/app -U pip setuptools pyminder
 RUN pip install --target=/app ruamel.yaml
 
 FROM gcr.io/distroless/python3-debian10
