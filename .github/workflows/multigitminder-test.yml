@@ -1,0 +1,17 @@
+name: multigitminder
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    runs-on: ubuntu-latest
+    name: multigitminder
+    steps:
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
+        with:
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: multigitminder
+          COMMENT: 'testing no checkout'
