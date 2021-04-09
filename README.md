@@ -115,11 +115,11 @@ jobs:
 ```
 and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
 
-## What if I want commits to a repo to contribute to multiple Beeminder goals?
+### What if I want commits to a repo to contribute to multiple Beeminder goals?
 
 Create a workflow file in your repo's `.github/workflows/` directory for each goal, changing the input parameters accordingly.
 
-## What if I want repositories with specific languages contributing to my Beeminder goal?
+### What if I want repositories with specific languages contributing to my Beeminder goal?
 
 Use [actions/checkout@v2](https://github.com/actions/checkout) and [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add `linguist-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
 
@@ -146,7 +146,7 @@ jobs:
           percentage: true
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -155,7 +155,7 @@ jobs:
           REPO_LANGS: ${{ steps.linguist.outputs.data }}
 ```
 
-## What if I want my commit messages to be the comment on the Beeminder data point?
+### What if I want my commit messages to be the comment on the Beeminder data point?
 
 Add `${{ github.event.head_commit.message }}` as input for the comment variable.
 
