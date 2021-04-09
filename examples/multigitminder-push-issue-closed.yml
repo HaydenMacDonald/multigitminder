@@ -1,7 +1,9 @@
-name: multigitminder-pull-request
+name: multigitminder-issue-closed
 on:
-  pull_request:
-    types: [ opened, closed ]
+  push:
+    branches: [ main ]
+  issues:
+    types: [ closed ]
 
 jobs:
   multigitminder:
@@ -10,8 +12,7 @@ jobs:
     steps:
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
-        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: YOUR_GOAL_NAME_HERE

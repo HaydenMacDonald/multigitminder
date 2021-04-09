@@ -8,7 +8,7 @@ inputs:
   USERNAME:
     description: 'Beeminder username.'
     required: true
-  AUTH_TOKEN: 
+  AUTH_TOKEN:
     description: 'Unique authorization token for Beeminder API.'
     required: true
   GOAL:

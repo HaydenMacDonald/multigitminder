@@ -1,6 +1,7 @@
 name: Embed example code in README
 on:
   pull_request:
+    types: [ opened, edited, closed ]
     branches:
       - main
 
@@ -14,7 +15,7 @@ jobs:
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           ref: refs/heads/${{ github.head_ref }}
 
-      - uses: tokusumi/markdown-embed-code@main
+      - uses: tokusumi/markdown-embed-code@v1.0.0
         with:
           markdown: "README.md"
           token: ${{ secrets.GITHUB_TOKEN }}
