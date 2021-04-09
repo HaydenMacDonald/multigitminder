@@ -1,7 +1,7 @@
 name: multigitminder
 on:
   push:
-    branches: [ main, codefactor ]
+    branches: [ main ]
   issues:
     types: [ closed ]
 
@@ -22,7 +22,7 @@ jobs:
       # multigitminder
       - name: multigitminder
         # TODO Change tag reference to v1 in all example/test workflow files
-        uses: HaydenMacDonald/multigitminder@codefactor
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
