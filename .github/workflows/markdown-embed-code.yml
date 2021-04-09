@@ -1,7 +1,7 @@
 name: Embed example code in README
 on:
   pull_request:
-    types: [ opened, edited ]
+    types: [ opened, edited, closed ]
     branches:
       - main
 

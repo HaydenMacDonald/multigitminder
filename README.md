@@ -65,8 +65,8 @@ jobs:
           GOAL: YOUR_GOAL_NAME_HERE
 ```
 
-Log data to a Beeminder goal after closing an issue:
-```yaml:examples/multigitminder-issue-closed.yml
+Log data to a Beeminder goal after pushing or closing an issue:
+```yaml:examples/multigitminder-push-issue-closed.yml
 name: multigitminder-issue-closed
 on:
   issues:
@@ -84,6 +84,8 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: YOUR_GOAL_NAME_HERE
 ```
+
+
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
 
