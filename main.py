@@ -77,15 +77,16 @@ def process_langs(target_langs, repo_langs):
         # Matching languages
         matched_langs = [lang for lang in target_langs if lang in repo_langs]
         
-        # If there is not at least one target language in repo_langs, stop and return error message
-        if (len(matched_langs) < 1):
-            print('Error: Target languages not found in repository language list.')
-            return
-        else:
+        # If there is at least one target language in repo_langs proceed, else print error message and return
+        if (len(matched_langs) > 0):
             langs_list = ''
             for i in matched_langs:
                 langs_list += i + " "
             print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
+        else:
+            print('Error: Target languages not found in repository language list.')
+            return
+            
 
 def main():
 
