@@ -1,17 +1,17 @@
 name: multigitminder
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    types: [ opened, closed ]
 
 jobs:
   multigitminder:
-    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@main
+        id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
+          GOAL: multigitminder

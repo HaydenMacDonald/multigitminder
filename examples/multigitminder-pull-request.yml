@@ -9,7 +9,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder
+        uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
