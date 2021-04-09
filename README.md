@@ -85,9 +85,11 @@ jobs:
           GOAL: YOUR_GOAL_NAME_HERE
 ```
 
-
-
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
+
+### What if I want commits to a repo to contribute to multiple Beeminder goals?
+
+Create a workflow file in your repo's `.github/workflows/` directory for each goal, changing the input parameters accordingly.
 
 ### What if I want specific commits to trigger multigitminder?
 
@@ -112,11 +114,7 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: YOUR_GOAL_NAME_HERE
 ```
-and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
-
-### What if I want commits to a repo to contribute to multiple Beeminder goals?
-
-Create a workflow file in your repo's `.github/workflows/` directory for each goal, changing the input parameters accordingly.
+and include `[multigitminder]` in the commit message of the commits you want to count towards your Beeminder goal.
 
 ### What if I want repositories with specific languages contributing to my Beeminder goal?
 
