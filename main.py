@@ -8,6 +8,8 @@ from pyminder.pyminder import Pyminder
 
 def get_time():
 
+    # TODO Allow user to input their timezone for date/timestamp timezone conversion
+
     # Generate datetime
     time = datetime.now()
 
@@ -47,7 +49,7 @@ def process_comment(comment, ref, sha, timestamp):
     # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
-        comment = ref + '@' + sha + ' via multigitminder API call at ' + timestamp
+        comment = ref + '@' + sha + ' via multigitminder API call at ' + timestamp + ' UTC'
 
     return comment
 
