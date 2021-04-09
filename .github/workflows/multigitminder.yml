@@ -1,7 +1,7 @@
 name: multigitminder
 on:
   push:
-    branches: [ main ]
+    branches: [ main, codefactor ]
   issues:
     types: [ closed ]
 
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: multigitminder
     steps:
-      # Checkout 
+      # Checkout
       - name: Checkout
         uses: actions/checkout@v2
       - name: "TODO to Issue"
@@ -22,7 +22,7 @@ jobs:
       # multigitminder
       - name: multigitminder
         # TODO Change tag reference to v1 in all example/test workflow files
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@codefactor
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
