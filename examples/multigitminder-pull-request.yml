@@ -1,4 +1,4 @@
-name: multigitminder
+name: multigitminder-pull-request
 on:
   pull_request:
     types: [ opened, closed ]

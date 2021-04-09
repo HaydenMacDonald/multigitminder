@@ -1,4 +1,4 @@
-name: multigitminder
+name: multigitminder-issue-closed
 on:
   issues:
     types: [ closed ]

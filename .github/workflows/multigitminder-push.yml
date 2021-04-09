@@ -1,4 +1,4 @@
-name: multigitminder
+name: multigitminder-push
 on:
   push:
     branches: [ main ]

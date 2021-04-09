@@ -1,4 +1,4 @@
-name: multigitminder
+name: multigitminder-specific-commits
 on:
   push:
     branches: [ main ]

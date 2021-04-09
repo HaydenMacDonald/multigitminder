@@ -1,4 +1,4 @@
-name: multigitminder
+name: multigitminder-linguist
 on:
   push:
     branches: [ main ]
