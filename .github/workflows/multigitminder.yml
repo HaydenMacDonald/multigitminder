@@ -13,12 +13,22 @@ jobs:
       # Checkout 
       - name: Checkout
         uses: actions/checkout@v2
+          persist-credentials: false
+          fetch-depth: 0
+          ref: refs/heads/${{ github.head_ref }}
       - name: "TODO to Issue"
         uses: "alstr/todo-to-issue-action@v2.4.1"
         id: "todo"
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLOSE_ISSUES: false
+      # markdown-embed-code
+      - name: Markdown embed code from file
+        uses: tokusumi/markdown-embed-code@v1.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Synchronizing README"
+          silent: true
       # multigitminder
       - name: multigitminder
         # TODO Change tag reference to v1 in all example/test workflow files

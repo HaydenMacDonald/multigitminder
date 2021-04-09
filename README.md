@@ -45,45 +45,13 @@ Optional
 See [examples directory](/examples).
 
 Log data to a Beeminder goal when pushing to the main branch:
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
+```yaml:examples/multigitminder-push.yml
 
-jobs:
-  multigitminder:
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
 ```
 
-Log data to a Beeminder goal after pushing to main branch or closing an issue:
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
-  issues:
-    types: [ closed ]
+Log data to a Beeminder goal after closing an issue:
+```yaml:examples/multigitminder-issue-closed.yml
 
-jobs:
-  multigitminder:
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
 ```
 
 See the [GitHub Actions documentation](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more events that can trigger this action.
@@ -92,26 +60,8 @@ See the [GitHub Actions documentation](https://docs.github.com/en/actions/refere
 
 Add a [conditional](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idif) to your workflow file like so:
 
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+```yaml:examples/multigitminder-specific-commits.yml
 
-jobs:
-  multigitminder:
-    if: "contains(github.event.head_commit.message, '[multigitminder]')" ## THIS LINE HERE
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
 ```
 and include '[multigitminder]' in the commit message of the commits you want to count towards your Beeminder goal.
 
@@ -123,61 +73,16 @@ Create a workflow file in your repo's `.github/workflows/` directory for each go
 
 Use [actions/checkout@v2](https://github.com/actions/checkout) and [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add `linguist-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
 
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
+```yaml:examples/multigitminder-linguist.yml
 
-jobs:
-  multigitminder:
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      # checkout
-      - name: Checkout
-        uses: actions/checkout@v2
-      # linguist
-      - name: Linguist Action
-        uses: fabasoad/linguist-action@v1.0.2
-        id: linguist
-        with:
-          path: './'
-          percentage: true
-      # multigitminder
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
-          TARGET_LANGS: YOUR_TARGET_LANGUAGES_HERE ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
-          REPO_LANGS: ${{ steps.linguist.outputs.data }}
 ```
 
 ### What if I want my commit messages to be the comment on the Beeminder data point?
 
 Add `${{ github.event.head_commit.message }}` as input for the comment variable.
 
-```yaml
-name: multigitminder
-on:
-  push:
-    branches: [ main ]
+```yaml:examples/multigitminder-commit-message-comment.yml
 
-jobs:
-  multigitminder:
-    runs-on: ubuntu-latest
-    name: multigitminder
-    steps:
-      - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
-        with:
-          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
-          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE
-          VALUE: 1
-          COMMENT: ${{ github.event.head_commit.message }}
 ```
 
 ## License

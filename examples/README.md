@@ -7,9 +7,6 @@ See [GitHub Actions docs](https://docs.github.com/en/actions/reference/events-th
 ### Commit workflows
 
 - [push](/examples/multigitminder-push.yml) - A simple workflow that triggers on every push to a specified branch.
-
-https://github.com/HaydenMacDonald/multigitminder/blob/36c1c599ab7f7c8eb62e57e621dcbdb6a3454c2a/examples/multigitminder-push.yml#L1-L16
-
 - [specific-commits](/examples/multigitminder-specific-commits.yml) - Same workflow as above but with a conditional that prevents `multigitminder` from running if it doesn't contain the target string in the commit message.
 - [commit-message-comment](/examples/multigitminder-commit-message-comment.yml) - Adds your commit message as the data point's comment.
 
