@@ -21,7 +21,7 @@ jobs:
           CLOSE_ISSUES: false
       # multigitminder
       - name: multigitminder
-        # TODO Change tag reference to v1 in all example/test workflow files
+        # TODO Change uses tag reference to v1 in all example/test workflow files
         uses: HaydenMacDonald/multigitminder@main
         id: multigitminder
         with:

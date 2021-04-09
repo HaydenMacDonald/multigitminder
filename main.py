@@ -6,13 +6,13 @@ from datetime import datetime
 from pyminder.pyminder import Pyminder
 
 
-def get_time():
+def get_time(): # def get_time(timezone):
 
     # TODO Allow user to input their timezone for date/timestamp timezone conversion
-
+    
     # Generate datetime in GMT
     time = datetime.now()
-    # local_time = time.astimezone(pytz.timezone('Europe/London'))
+    # local_time = time.astimezone(pytz.timezone(timezone))
 
     # Create ISO format timestamp
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
