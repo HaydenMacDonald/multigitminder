@@ -8,8 +8,10 @@ from pyminder.pyminder import Pyminder
 
 def get_time():
 
-    # Timestamp
+    # Generate datetime
     time = datetime.now()
+
+    # Create ISO format timestamp
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
     return time, timestamp
