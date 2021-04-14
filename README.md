@@ -31,6 +31,7 @@ Required
 - `VALUE` - Value of data point as string (default value of '1').
 
 Optional
+- `TIMEZONE` - Your local timezone in IANA format (e.g. 'America/New_York', 'Europe_London')
 - `COMMENT` - Comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
 - `TARGET_LANGS` - List of target languages, formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
 - `REPO_LANGS` - List of languages inputted by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 

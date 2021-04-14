@@ -3,22 +3,27 @@ import time
 import json
 import ast
 from datetime import datetime
+import pytz
 from pyminder.pyminder import Pyminder
 
 
-def get_time(): # def get_time(timezone):
+def get_time(timezone):
 
     # TODO Allow user to input their timezone for date/timestamp timezone conversion
-    
+
     # Generate datetime in GMT
     time = datetime.now()
-    # local_time = time.astimezone(pytz.timezone(timezone))
 
     # Create ISO format timestamp
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    # local_timestamp = local_time.strftime("%Y-%m-%d %H:%M:%S")
+    
+    # If timezone is provided, generate local_time and local_timestamp
+    if (timezone is not None or len(timezone) != 0):
+        local_time = time.astimezone(pytz.timezone(timezone))
+        local_timestamp = local_time.strftime("%Y-%m-%d %H:%M:%S")
+        return local_time, local_timestamp
 
-    return time, timestamp # return local_time, local_timestamp
+    return time, timestamp
 
 
 def process_sha():
@@ -96,7 +101,7 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
-    # timezone = os.getenv('INPUT_TIMEZONE')
+    timezone = os.getenv('INPUT_TIMEZONE')
     target_langs = os.getenv('INPUT_TARGET_LANGS')
     repo_langs = os.getenv('INPUT_REPO_LANGS')
     
@@ -125,7 +130,7 @@ def main():
     sha = process_sha()
 
     # Get time, timestamp
-    time, timestamp = get_time()
+    time, timestamp = get_time(timezone)
 
     # Process comment
     comment = process_comment(comment, ref, sha, timestamp)
