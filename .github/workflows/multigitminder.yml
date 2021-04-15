@@ -28,4 +28,4 @@ jobs:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
-          TIMEZONE: Europe/London
+          TIME_ZONE: Europe/London

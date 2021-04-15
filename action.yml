@@ -11,7 +11,7 @@ inputs:
   AUTH_TOKEN:
     description: 'Unique authorization token for Beeminder API.'
     required: true
-  TIMEZONE:
+  TIME_ZONE:
     description: 'User timezone in IANA time zone format'
     required: false
   GOAL:

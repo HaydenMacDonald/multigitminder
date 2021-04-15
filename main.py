@@ -106,7 +106,7 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
-    timezone = os.getenv('INPUT_TIMEZONE')
+    timezone = os.getenv('INPUT_TIME_ZONE')
     target_langs = os.getenv('INPUT_TARGET_LANGS')
     repo_langs = os.getenv('INPUT_REPO_LANGS')
     
