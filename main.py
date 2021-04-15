@@ -17,15 +17,13 @@ def get_time(timezone):
     # Create ISO format timestamp
     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
-    print('Time: ' + time)
     print('Timestamp: ' + timestamp)
     
     # If timezone is provided, generate local_time and local_timestamp
     if (timezone is not None or len(timezone) != 0):
         local_time = time.astimezone(pytz.timezone(timezone))
         local_timestamp = local_time.strftime("%Y-%m-%d %H:%M:%S")
-        print('Local Time: ' + local_time)
-        print(local_timestamp)
+        print('Local Timestamp: ' + local_timestamp)
         return local_time, local_timestamp
 
     return time, timestamp
