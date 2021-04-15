@@ -22,7 +22,7 @@ jobs:
       # multigitminder
       - name: multigitminder
         # TODO Change uses tag reference to v1 in all example/test workflow files
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@timezone
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
