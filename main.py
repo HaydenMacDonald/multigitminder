@@ -148,7 +148,8 @@ def main():
     goal = pyminder.get_goal(goal_name)
     
     # Stage datapoint for commit
-    goal.stage_datapoint(value, time.timestamp(), comment)
+    # goal.stage_datapoint(value, time.timestamp(), comment)
+    goal.stage_datapoint(value, comment)
     
     # Commit datapoints to Beeminder API
     goal.commit_datapoints()
