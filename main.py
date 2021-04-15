@@ -59,7 +59,7 @@ def process_comment(comment, ref, sha, timestamp):
     # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
-        comment = ref + '@' + sha + ' via multigitminder API call at ' + timestamp + ' UTC'
+        comment = ref + '@' + sha + ' via multigitminder API call at ' + timestamp
 
     return comment
 
@@ -148,8 +148,7 @@ def main():
     goal = pyminder.get_goal(goal_name)
     
     # Stage datapoint for commit
-    # goal.stage_datapoint(value, time.timestamp(), comment)
-    goal.stage_datapoint(value, comment)
+    goal.stage_datapoint(value, time.timestamp(), comment)
     
     # Commit datapoints to Beeminder API
     goal.commit_datapoints()
