@@ -28,9 +28,9 @@ Required
 - `USERNAME` - Your Beeminder username, stored as a secret in your repo.
 - `AUTH_TOKEN` - Your unique authorization token for Beeminder API, stored as a secret in your repo.
 - `GOAL` - Name of your goal.
-- `VALUE` - Value of data point as string (default value of '1').
 
 Optional
+- `VALUE` - Value of data point as string (default value of '1').
 - `COMMENT` - Comment about the data point (default: '[branch]@[commit-ref] via multigitminder API call').
 - `TARGET_LANGS` - List of target languages, formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
 - `REPO_LANGS` - List of languages inputted by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
