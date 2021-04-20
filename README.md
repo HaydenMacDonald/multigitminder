@@ -70,6 +70,8 @@ Log data to a Beeminder goal after pushing or closing an issue:
 ```yaml:examples/multigitminder-push-issue-closed.yml
 name: multigitminder-issue-closed
 on:
+  push:
+    branches: [ main ]
   issues:
     types: [ closed ]
 
