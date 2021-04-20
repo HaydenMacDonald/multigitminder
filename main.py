@@ -6,11 +6,6 @@ from datetime import datetime
 from pyminder.pyminder import Pyminder
 
 
-def get_time(timezone):
-    pass
-    # TODO Allow user to input their timezone for date/timestamp timezone conversion
-
-
 def process_sha():
 
     # Get SHA from environment
