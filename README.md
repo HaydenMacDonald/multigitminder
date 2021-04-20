@@ -31,12 +31,12 @@ Required
 - `VALUE` - Value of data point as string (default value of '1').
 
 Optional
-- `COMMENT` - Comment about the data point (default: 'via multigitminder API call at [ timestamp ]').
+- `COMMENT` - Comment about the data point (default: '[branch]@[commit-ref] via multigitminder API call').
 - `TARGET_LANGS` - List of target languages, formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
 - `REPO_LANGS` - List of languages inputted by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
 
 ## Outputs
-- Print statement confirming the value, goal, timestamp, and comment of data point sent to Beeminder.
+- Print statement confirming the value, goal, and comment of data point sent to Beeminder.
 
 ## Secrets & Environmental Variables
 
@@ -70,6 +70,8 @@ Log data to a Beeminder goal after pushing or closing an issue:
 ```yaml:examples/multigitminder-push-issue-closed.yml
 name: multigitminder-issue-closed
 on:
+  push:
+    branches: [ main ]
   issues:
     types: [ closed ]
 

@@ -6,19 +6,9 @@ from datetime import datetime
 from pyminder.pyminder import Pyminder
 
 
-def get_time(): # def get_time(timezone):
-
+def get_time(timezone):
+    pass
     # TODO Allow user to input their timezone for date/timestamp timezone conversion
-    
-    # Generate datetime in GMT
-    time = datetime.now()
-    # local_time = time.astimezone(pytz.timezone(timezone))
-
-    # Create ISO format timestamp
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
-    # local_timestamp = local_time.strftime("%Y-%m-%d %H:%M:%S")
-
-    return time, timestamp # return local_time, local_timestamp
 
 
 def process_sha():
@@ -46,12 +36,12 @@ def process_ref():
     return ref
 
 
-def process_comment(comment, ref, sha, timestamp):
+def process_comment(comment, ref, sha):
 
     # If comment is not provided, use default
     if (comment is None or len(comment) == 0):
         print('Comment not provided. Using default comment.')
-        comment = ref + '@' + sha + ' via multigitminder API call at ' + timestamp + ' UTC'
+        comment = ref + '@' + sha + ' via multigitminder API call'
 
     return comment
 
@@ -96,7 +86,6 @@ def main():
     goal_name = os.getenv('INPUT_GOAL')
     value = os.getenv('INPUT_VALUE')
     comment = os.getenv('INPUT_COMMENT')
-    # timezone = os.getenv('INPUT_TIMEZONE')
     target_langs = os.getenv('INPUT_TARGET_LANGS')
     repo_langs = os.getenv('INPUT_REPO_LANGS')
     
@@ -124,11 +113,8 @@ def main():
     ref = process_ref()
     sha = process_sha()
 
-    # Get time, timestamp
-    time, timestamp = get_time()
-
     # Process comment
-    comment = process_comment(comment, ref, sha, timestamp)
+    comment = process_comment(comment, ref, sha)
 
     # Process languages
     process_langs(target_langs, repo_langs)
@@ -140,13 +126,13 @@ def main():
     goal = pyminder.get_goal(goal_name)
     
     # Stage datapoint for commit
-    goal.stage_datapoint(value, time.timestamp(), comment)
+    goal.stage_datapoint(value = value, comment = comment)
     
     # Commit datapoints to Beeminder API
     goal.commit_datapoints()
 
     # Output statement
-    print(ref + '@' + sha + ': ' + 'Data point of ' + value + ' added to ' + goal_name + ' at ' + timestamp + " with comment: '" + comment + "'")
+    print(ref + '@' + sha + ': ' + 'Data point of ' + value + ' added to ' + goal_name + " with comment: '" + comment + "'")
 
 
 if __name__ == "__main__":
