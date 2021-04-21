@@ -59,7 +59,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -68,7 +68,7 @@ jobs:
 
 Log data to a Beeminder goal after pushing or closing an issue:
 ```yaml:examples/multigitminder-push-issue-closed.yml
-name: multigitminder-issue-closed
+name: multigitminder-push-issue-closed
 on:
   push:
     branches: [ main ]
@@ -81,7 +81,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -111,7 +111,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -146,7 +146,7 @@ jobs:
           percentage: true
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
@@ -173,7 +173,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
