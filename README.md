@@ -2,6 +2,7 @@
 
 ![multigitminder](https://github.com/HaydenMacDonald/multigitminder/actions/workflows/multigitminder.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/haydenmacdonald/multigitminder/badge)](https://www.codefactor.io/repository/github/haydenmacdonald/multigitminder)
+[![Tutorial](https://img.shields.io/badge/-Tutorial%20Blog%20Post-blue?style=flat&logo=RSS&logoColor=white)](https://needleinthehay.ca/post/introducing-multigitminder/)
 
 A GitHub Action for logging data points to [Beeminder](https://www.beeminder.com/home). Configure workflows to trigger on push, pull requests, closed issues, and [any other event supported by GitHub Actions](https://docs.github.com/en/actions/reference/events-that-trigger-workflows).
 
