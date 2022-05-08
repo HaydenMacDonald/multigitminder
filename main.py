@@ -112,7 +112,8 @@ def main():
     comment = process_comment(comment, ref, sha)
 
     # Process languages
-    process_langs(target_langs, repo_langs)
+    if (target_langs and repo_langs):
+        process_langs(target_langs, repo_langs)
 
     # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
