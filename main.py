@@ -114,6 +114,9 @@ def main():
     # Process languages
     if (target_langs and repo_langs):
         process_langs(target_langs, repo_langs)
+    elif (target_langs and repo_langs is None):
+        print('Error: repo languages not found.')
+        return
 
     # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)
