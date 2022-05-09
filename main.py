@@ -41,6 +41,12 @@ def process_comment(comment, ref, sha):
     return comment
 
 def process_langs(target_langs, repo_langs):
+
+    ## Check for valid repo_langs value
+    if (repo_langs is None):
+        raise ValueError('Repo languages is type None.')
+    if not repo_langs:
+        raise ValueError('Repo languages dictionary is empty.')
     
     # If target languages are provided
     if (len(target_langs) != 0):
@@ -69,8 +75,7 @@ def process_langs(target_langs, repo_langs):
                 langs_list += i + " "
             print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
         else:
-            print('Error: Target languages not found in repository language list.')
-            return
+            raise ValueError('Target languages not found in repository language list.')
             
 
 def main():
@@ -112,11 +117,7 @@ def main():
     comment = process_comment(comment, ref, sha)
 
     # Process languages
-    if (target_langs and repo_langs):
-        process_langs(target_langs, repo_langs)
-    elif (target_langs and repo_langs is None):
-        print('Error: repo languages not found.')
-        return
+    process_langs(target_langs, repo_langs)
 
     # Instantiate pyminder
     pyminder = Pyminder(user = username, token = auth_token)

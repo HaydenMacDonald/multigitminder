@@ -19,6 +19,13 @@ jobs:
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLOSE_ISSUES: false
+      # Linguist
+      - name: Linguist Action
+        uses: fabasoad/linguist-action@v1.0.2
+        id: linguist
+        with:
+          path: './'
+          percentage: true
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@v1.0.0
@@ -27,3 +34,5 @@ jobs:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
+          TARGET_LANGS: Python ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
+          REPO_LANGS: ${{ steps.linguist.outputs.data }}
