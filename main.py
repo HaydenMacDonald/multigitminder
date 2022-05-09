@@ -89,8 +89,7 @@ def main():
     target_langs = os.getenv('INPUT_TARGET_LANGS')
     repo_langs = os.getenv('INPUT_REPO_LANGS')
 
-    if repo_langs:
-        print(repo_langs)
+    print(repo_langs)
     
     # Fail if username is not provided
     if (username is None or len(username) == 0):
