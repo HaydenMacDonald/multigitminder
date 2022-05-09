@@ -1,7 +1,7 @@
 name: multigitminder
 on:
   push:
-    branches: [ main, lang_bug ]
+    branches: [ main, lang-bug ]
   issues:
     types: [ closed ]
 
