@@ -32,6 +32,6 @@ jobs:
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: multigitminder
+          GOAL: python
           TARGET_LANGS: Python ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
           REPO_LANGS: ${{ steps.enry.outputs.languages }}
