@@ -22,6 +22,7 @@ jobs:
       # Linguist
       - name: Setup Enry
         uses: fabasoad/setup-enry-action@v0.1.0
+      - name: Linguist
         run: echo "{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
       # multigitminder
       - name: multigitminder
