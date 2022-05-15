@@ -19,11 +19,12 @@ jobs:
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLOSE_ISSUES: false
-      # Linguist
+      # Enry
       - name: Setup Enry
         uses: fabasoad/setup-enry-action@v0.1.0
-      - name: Linguist
-        run: echo "{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
+      - name: Run Enry
+        id: enry
+        run: echo ::set-output name=languages::"{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@v1.0.0
@@ -33,4 +34,4 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: multigitminder
           TARGET_LANGS: Python ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
-          REPO_LANGS: ${{ steps.linguist.outputs.data }}
+          REPO_LANGS: ${{ steps.enry.outputs.languages }}
