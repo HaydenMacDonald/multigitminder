@@ -138,13 +138,12 @@ jobs:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v2
-      # linguist
-      - name: Linguist Action
-        uses: fabasoad/setup-enry-action@v1.0.2
-        id: linguist
-        with:
-          path: './'
-          percentage: true
+      # Enry
+      - name: Setup Enry
+        uses: fabasoad/setup-enry-action@v0.1.0
+      - name: Run Enry
+        id: enry
+        run: echo ::set-output name=languages::"{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@v1.0.0
@@ -154,7 +153,7 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: YOUR_GOAL_NAME_HERE
           TARGET_LANGS: YOUR_TARGET_LANGUAGES_HERE ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
-          REPO_LANGS: ${{ steps.linguist.outputs.data }}
+          REPO_LANGS: ${{ steps.enry.outputs.languages }}
 
 ```
 
