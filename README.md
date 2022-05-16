@@ -34,7 +34,7 @@ Optional
 - `VALUE` - Value of data point as string (default value of '1').
 - `COMMENT` - Comment about the data point (default: '[branch]@[commit-ref] via multigitminder API call').
 - `TARGET_LANGS` - List of target languages, formatted as a stringified array/list (e.g. `"['python', 'javascript']"`)
-- `REPO_LANGS` - List of languages inputted by [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action). 
+- `REPO_LANGS` - List of languages inputted by [fabasoad/setup-enry-action](https://github.com/marketplace/actions/setup-enry). 
 
 ## Outputs
 - Print statement confirming the value, goal, and comment of data point sent to Beeminder.
@@ -122,7 +122,7 @@ and include `[multigitminder]` in the commit message of the commits you want to 
 
 ### What if I want repositories with specific languages contributing to my Beeminder goal?
 
-Use [actions/checkout@v2](https://github.com/actions/checkout) and [fabasoad/linguist-action](https://github.com/marketplace/actions/linguist-action) in the steps preceding `multigitminder` in your workflow file. Then add `linguist-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
+Use [actions/checkout@v2](https://github.com/actions/checkout) and [fabasoad/setup-enry-action](https://github.com/marketplace/actions/setup-enry) in the steps preceding `multigitminder` in your workflow file. Then add `setup-enry-action`'s output data and a list with your target language(s) as inputs for multigitminder (see below). 
 
 ```yaml:examples/multigitminder-linguist.yml
 name: multigitminder-linguist
@@ -138,13 +138,12 @@ jobs:
       # Checkout
       - name: Checkout
         uses: actions/checkout@v2
-      # linguist
-      - name: Linguist Action
-        uses: fabasoad/linguist-action@v1.0.2
-        id: linguist
-        with:
-          path: './'
-          percentage: true
+      # Enry
+      - name: Setup Enry
+        uses: fabasoad/setup-enry-action@v0.1.0
+      - name: Run Enry
+        id: enry
+        run: echo ::set-output name=languages::"{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
       # multigitminder
       - name: multigitminder
         uses: HaydenMacDonald/multigitminder@v1.0.0
@@ -154,7 +153,7 @@ jobs:
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
           GOAL: YOUR_GOAL_NAME_HERE
           TARGET_LANGS: YOUR_TARGET_LANGUAGES_HERE ## e.g. "['python', 'dockerfile', 'javascript']" or simply Python
-          REPO_LANGS: ${{ steps.linguist.outputs.data }}
+          REPO_LANGS: ${{ steps.enry.outputs.languages }}
 
 ```
 

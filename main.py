@@ -41,6 +41,12 @@ def process_comment(comment, ref, sha):
     return comment
 
 def process_langs(target_langs, repo_langs):
+
+    ## Check for valid repo_langs value
+    if (repo_langs is None):
+        raise ValueError('Repo languages is type None.')
+    if not repo_langs:
+        raise ValueError('Repo languages dictionary is empty.')
     
     # If target languages are provided
     if (len(target_langs) != 0):
@@ -69,8 +75,7 @@ def process_langs(target_langs, repo_langs):
                 langs_list += i + " "
             print('Target languages found: ' + langs_list + '\nLogging data to Beeminder.')
         else:
-            print('Error: Target languages not found in repository language list.')
-            return
+            raise ValueError('Target languages not found in repository language list.')
             
 
 def main():
@@ -83,6 +88,8 @@ def main():
     comment = os.getenv('INPUT_COMMENT')
     target_langs = os.getenv('INPUT_TARGET_LANGS')
     repo_langs = os.getenv('INPUT_REPO_LANGS')
+
+    print(repo_langs)
     
     # Fail if username is not provided
     if (username is None or len(username) == 0):
