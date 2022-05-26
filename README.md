@@ -60,7 +60,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@v1.0.0
+        uses: HaydenMacDonald/multigitminder@v1.1.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -82,7 +82,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@v1.0.0
+        uses: HaydenMacDonald/multigitminder@v1.1.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -112,7 +112,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@v1.0.0
+        uses: HaydenMacDonald/multigitminder@v1.1.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -146,7 +146,7 @@ jobs:
         run: echo ::set-output name=languages::"{$(enry | sed 's/^\(.*\)\t\(.*\)$/\"\2\":\"\1\"/' | paste -sd "," -)}"
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@v1.0.0
+        uses: HaydenMacDonald/multigitminder@v1.1.0
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
@@ -173,7 +173,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@v1.0.0
+        uses: HaydenMacDonald/multigitminder@v1.1.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
