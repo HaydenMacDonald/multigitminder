@@ -41,15 +41,15 @@ def process_comment(comment, ref, sha):
     return comment
 
 def process_langs(target_langs, repo_langs):
-
-    ## Check for valid repo_langs value
-    if (repo_langs is None):
-        raise ValueError('Repo languages is type None.')
-    if not repo_langs:
-        raise ValueError('Repo languages dictionary is empty.')
-    
+	
     # If target languages are provided
     if (len(target_langs) != 0):
+
+        ## Check for valid repo_langs value
+        if (repo_langs is None):
+            raise ValueError('Repo languages is type None.')
+        if not repo_langs:
+            raise ValueError('Repo languages dictionary is empty
         
         try:
             # Extract target_langs from array string
